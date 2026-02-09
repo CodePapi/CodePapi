@@ -42,7 +42,7 @@ const content = {
         ],
       },
       {
-        title: 'Software Engineer (Frontend)',
+        title: 'Software Engineer ',
         company: 'publicplan GmbH',
         location: 'Germany',
         period: 'Jul 2023 — Mar 2025',
@@ -76,7 +76,7 @@ const content = {
         ],
       },
       {
-        title: 'Software Engineer (Frontend)',
+        title: 'Software Engineer ',
         company: 'CAD Consulting Limited',
         location: 'Port Harcourt, Rivers, Nigeria',
         period: 'Nov 2019 — Nov 2020',
@@ -249,7 +249,7 @@ const content = {
         ],
       },
       {
-        title: 'Software Engineer (Frontend)',
+        title: 'Software Engineer ',
         company: 'publicplan GmbH',
         location: 'Deutschland',
         period: 'Jul 2023 — Mär 2025',
@@ -283,7 +283,7 @@ const content = {
         ],
       },
       {
-        title: 'Software Engineer (Frontend)',
+        title: 'Software Engineer ',
         company: 'CAD Consulting Limited',
         location: 'Port Harcourt, Rivers, Nigeria',
         period: 'Nov 2019 — Nov 2020',
