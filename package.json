@@ -1,0 +1,23 @@
+{
+  "name": "codepapi",
+  "version": "1.0.0",
+  "description": "[GitHub](https://github.com/codepapi)",
+  "homepage": "https://github.com/CodePapi/CodePapi#readme",
+  "bugs": {
+    "url": "https://github.com/CodePapi/CodePapi/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/CodePapi/CodePapi.git"
+  },
+  "license": "ISC",
+  "author": "",
+  "type": "commonjs",
+  "main": "index.js",
+  "scripts": {
+    "dev": "npm --prefix portfolio run dev",
+    "build": "npm --prefix portfolio run build",
+    "preview": "npm --prefix portfolio run preview",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  }
+}
