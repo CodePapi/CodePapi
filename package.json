@@ -18,6 +18,8 @@
     "dev": "npm --prefix portfolio run dev",
     "build": "npm --prefix portfolio run build",
     "preview": "npm --prefix portfolio run preview",
+    "postinstall": "npm --prefix portfolio install",
+    "vercel-build": "npm --prefix portfolio install && npm --prefix portfolio run build",
     "test": "echo \"Error: no test specified\" && exit 1"
   }
 }
