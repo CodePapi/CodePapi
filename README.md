@@ -1,6 +1,6 @@
 ## Samuel Egbajie
 
-[GitHub](https://github.com/codepapi)
+[Portfolio](https://code-papi.vercel.app/)
 
 Senior Software Engineer with full‑stack expertise in building scalable, high‑performance web applications and reliable systems. I specialize in modern JavaScript/TypeScript, software architecture, testing, and delivery automation.
 
@@ -30,6 +30,3 @@ Make.com · GitHub Copilot
 
 ### Contact
 - Email: [oshiesam@gmail.com](mailto:oshiesam@gmail.com)
-- GitHub: https://github.com/codepapi
-
-[GitHub](https://github.com/codepapi)
