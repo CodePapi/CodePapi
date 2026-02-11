@@ -189,7 +189,19 @@ const content = {
       'Introduction to Web Development (IBM/Coursera)',
       'Getting Started with Git and GitHub (IBM/Coursera)',
     ],
-    achievements: ['HNG Finalist — Top Developers Finalist (2019)'],
+    achievements: [
+      'HNG Finalist — Top Developers Finalist (2019)',
+      'Lendis GmbH — Software Engineer: Redesigned the product search experience by introducing Algolia as a dedicated search infrastructure, reducing search latency and improving result relevance and interaction speed by over 50% across the platform.',
+      'Lendis GmbH — Software Engineer: Identified performance bottlenecks through system analysis and implemented scalable solutions that improved overall application responsiveness as the platform scaled.',
+      'Lendis GmbH — Software Engineer: Addressed a critical client-side security challenge involving password protection in the browser, leading to the design and development of the open-source package n-krypta, improving secure data handling in frontend environments.',
+      'publicplan GmbH — Software Engineer: Resolved performance degradation in a high-traffic chatbot system by architecting and implementing Redis-based caching strategies, reducing repeated processing and improving response times under load.',
+      'publicplan GmbH — Software Engineer: Improved backend scalability and stability by optimizing data access patterns and introducing caching layers for high-frequency operations.',
+      'publicplan GmbH — Software Engineer: Drove modernization of legacy application components by migrating outdated codebases to modern architectures and standards, achieving 20%+ performance improvements, improved maintainability, and reduced technical debt.',
+      'publicplan GmbH — Software Engineer: Contributed to system reliability improvements by proactively addressing performance constraints during scaling phases.',
+      'Personal Projects — Full-Stack Development: Designed and scaled full-stack applications with a strong focus on performance and scalability, achieving 50%+ performance improvements through infrastructure optimization and resource scaling.',
+      'Personal Projects — Full-Stack Development: Applied performance-driven engineering practices including load-aware resource allocation, backend optimization, and system tuning to support growing usage demands.',
+      'Personal Projects — Full-Stack Development: Built and iterated systems with scalability considerations from early stages, enabling efficient growth without major architectural rewrites.',
+    ],
     projects: [
       {
         title: 'PAWEN Mentorship',
@@ -396,7 +408,19 @@ const content = {
       'Introduction to Web Development (IBM/Coursera)',
       'Getting Started with Git and GitHub (IBM/Coursera)',
     ],
-    achievements: ['HNG Finalist — Top Developers Finalist (2019)'],
+    achievements: [
+      'HNG Finalist — Top Developers Finalist (2019)',
+      'Lendis GmbH — Software Engineer: Das Produktsucherlebnis durch Einführung von Algolia als dedizierte Suchinfrastruktur neu gestaltet und dadurch Suchlatenz reduziert sowie Relevanz und Interaktionsgeschwindigkeit der Ergebnisse plattformweit um über 50% verbessert.',
+      'Lendis GmbH — Software Engineer: Performance-Engpässe durch Systemanalyse identifiziert und skalierbare Lösungen umgesetzt, die die Gesamtreaktionsfähigkeit der Anwendung bei wachsender Plattformlast verbessert haben.',
+      'Lendis GmbH — Software Engineer: Eine kritische clientseitige Sicherheitsanforderung beim Passwortschutz im Browser gelöst und dabei das Open-Source-Paket n-krypta entworfen und entwickelt, wodurch sichere Datenverarbeitung in Frontend-Umgebungen verbessert wurde.',
+      'publicplan GmbH — Software Engineer: Performanceeinbußen in einem stark frequentierten Chatbot-System behoben, indem Redis-basiertes Caching entworfen und implementiert wurde, was Wiederholverarbeitung reduzierte und Antwortzeiten unter Last verbesserte.',
+      'publicplan GmbH — Software Engineer: Backend-Skalierbarkeit und Stabilität durch Optimierung von Datenzugriffsmustern und Einführung von Caching-Schichten für hochfrequente Operationen verbessert.',
+      'publicplan GmbH — Software Engineer: Die Modernisierung von Legacy-Komponenten vorangetrieben, veraltete Codebasen auf moderne Architekturen und Standards migriert und dabei 20%+ Performance-Verbesserungen, bessere Wartbarkeit und geringere technische Schulden erzielt.',
+      'publicplan GmbH — Software Engineer: Zur Systemzuverlässigkeit beigetragen, indem Performance-Grenzen während Skalierungsphasen proaktiv adressiert wurden.',
+      'Persönliche Projekte — Full-Stack-Entwicklung: Full-Stack-Anwendungen mit starkem Fokus auf Performance und Skalierbarkeit entworfen und skaliert, dabei durch Infrastruktur-Optimierung und Ressourcenskalierung 50%+ Performance-Verbesserungen erreicht.',
+      'Persönliche Projekte — Full-Stack-Entwicklung: Performance-orientierte Engineering-Praktiken wie lastbewusste Ressourcenallokation, Backend-Optimierung und Systemtuning eingesetzt, um wachsende Nutzungsanforderungen zu unterstützen.',
+      'Persönliche Projekte — Full-Stack-Entwicklung: Systeme von Beginn an mit Skalierbarkeit im Blick aufgebaut und iteriert, wodurch effizientes Wachstum ohne große Architektur-Überarbeitungen möglich wurde.',
+    ],
     projects: [
       {
         title: 'PAWEN Mentorship',
@@ -435,9 +459,9 @@ function App() {
 
   return (
     <div className="relative min-h-screen overflow-hidden bg-slate-950 text-slate-100">
-      <div className="pointer-events-none absolute -left-40 top-0 h-96 w-96 rounded-full bg-cyan-500/20 blur-[140px]" />
-      <div className="pointer-events-none absolute -right-32 top-40 h-96 w-96 rounded-full bg-indigo-500/20 blur-[140px]" />
-      <div className="pointer-events-none absolute bottom-0 left-1/2 h-[28rem] w-[28rem] -translate-x-1/2 rounded-full bg-emerald-500/10 blur-[160px]" />
+      <div className="pointer-events-none absolute -left-40 top-0 h-96 w-96 rounded-full bg-slate-700/20 blur-[160px]" />
+      <div className="pointer-events-none absolute -right-32 top-40 h-96 w-96 rounded-full bg-indigo-900/20 blur-[160px]" />
+      <div className="pointer-events-none absolute bottom-0 left-1/2 h-[28rem] w-[28rem] -translate-x-1/2 rounded-full bg-slate-800/20 blur-[180px]" />
 
       <div className="mx-auto max-w-6xl px-6 pb-16 pt-10 sm:px-8">
         <header className="glass rounded-3xl p-8 sm:p-10">
@@ -459,8 +483,8 @@ function App() {
                 <button
                   className={`rounded-full px-4 py-2 text-sm font-medium transition ${
                     lang === 'en'
-                      ? 'bg-white text-slate-900'
-                      : 'text-slate-300 hover:text-white'
+                      ? 'bg-slate-100 text-slate-900'
+                      : 'text-slate-300 hover:text-slate-100'
                   }`}
                   onClick={() => setLang('en')}
                   aria-pressed={lang === 'en'}
@@ -470,8 +494,8 @@ function App() {
                 <button
                   className={`rounded-full px-4 py-2 text-sm font-medium transition ${
                     lang === 'de'
-                      ? 'bg-white text-slate-900'
-                      : 'text-slate-300 hover:text-white'
+                      ? 'bg-slate-100 text-slate-900'
+                      : 'text-slate-300 hover:text-slate-100'
                   }`}
                   onClick={() => setLang('de')}
                   aria-pressed={lang === 'de'}
@@ -503,7 +527,7 @@ function App() {
             </div>
             <div className="flex flex-col gap-3">
               <a
-                className="rounded-2xl border border-cyan-400/40 bg-cyan-500/10 px-6 py-4 text-center text-sm font-semibold text-cyan-100 transition hover:bg-cyan-500/20"
+                className="rounded-2xl border border-slate-500/40 bg-slate-800/40 px-6 py-4 text-center text-sm font-semibold text-slate-100 transition hover:bg-slate-800/60"
                 href={lang === 'en' ? '/resume-en.pdf' : '/resume-de.pdf'}
                 download
               >
