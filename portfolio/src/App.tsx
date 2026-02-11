@@ -30,7 +30,7 @@ const content = {
       projects: 'Mentorship & Community',
       languages: 'Languages',
     },
-    atsNote: 'Application ready formatting • Structured sections • Clear bullet points',
+    atsNote: '',
     experience: [
       {
         title: 'Career Break (Health and Well-being)',
@@ -249,7 +249,7 @@ const content = {
       projects: 'Mentoring & Community',
       languages: 'Sprachen',
     },
-    atsNote: 'Anwendungsbereite Formatierung • Strukturierte Abschnitte • Klare Stichpunkte',
+    atsNote: '',
     experience: [
       {
         title: 'Karrierepause (Gesundheit und Wohlbefinden)',
