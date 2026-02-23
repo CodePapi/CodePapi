@@ -1,5 +1,3 @@
-## Samuel Egbajie
-
 [Portfolio](https://code-papi.vercel.app/)
 
 Senior Software Engineer with full‑stack expertise in building scalable, high‑performance web applications and reliable systems. I specialize in modern JavaScript/TypeScript, software architecture, testing, and delivery automation.
