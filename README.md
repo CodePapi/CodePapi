@@ -119,12 +119,12 @@ Built reliable backend services using NestJS, PostgreSQL, and cloud infrastructu
 ## 📊 GitHub Stats
 
 <p align="center">
-  <img src="https://github-readme-stats.vercel.app/api?username=code-papi&show_icons=true&theme=tokyonight" height="180"/>
-  <img src="https://github-readme-stats.vercel.app/api/top-langs/?username=code-papi&layout=compact&theme=tokyonight" height="180"/>
+  <img src="https://github-readme-stats.vercel.app/api?username=codepapi&show_icons=true&theme=tokyonight" height="180"/>
+  <img src="https://github-readme-stats.vercel.app/api/top-langs/?username=codepapi&layout=compact&theme=tokyonight" height="180"/>
 </p>
 
 <p align="center">
-  <img src="https://github-readme-streak-stats.herokuapp.com/?user=code-papi&theme=tokyonight"/>
+  <img src="https://github-readme-streak-stats.herokuapp.com/?user=codepapi&theme=tokyonight"/>
 </p>
 
 ---
