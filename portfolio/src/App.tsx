@@ -27,7 +27,7 @@ const content = {
       education: 'Education',
       certifications: 'Certifications',
       achievements: 'Achievements',
-      projects: 'Mentorship & Community',
+      projects: 'Projects & Links',
       languages: 'Languages',
     },
     atsNote: '',
@@ -219,6 +219,42 @@ const content = {
         period: 'Sep 2021',
         summary: 'Mentored full-stack engineers through hands-on projects.',
       },
+      {
+        title: 'n‑krypta (npm package)',
+        period: '2023',
+        summary: 'Open-source cryptography utilities published on npm.',
+        link: 'https://www.npmjs.com/package/n-krypta',
+      },
+      {
+        title: 'Best Practices for all developers',
+        period: '2021',
+        summary: 'Technical article on Dev.to outlining engineering best practices.',
+        link: 'https://dev.to/codepapi/best-practices-for-all-developers-1ak0',
+      },
+      {
+        title: 'Travellers App',
+        period: '2020',
+        summary: 'A travel booking application (wakapadi.io).',
+        link: 'https://www.wakapadi.io',
+      },
+      {
+        title: 'Portfolio Website',
+        period: '2022',
+        summary: 'This very portfolio built with React, Vite and Tailwind.',
+        link: 'https://code-papi.vercel.app',
+      },
+      {
+        title: 'GitHub Profile',
+        period: 'Ongoing',
+        summary: 'Source code and open-source work.',
+        link: 'https://github.com/CodePapi',
+      },
+      {
+        title: 'LinkedIn Profile',
+        period: 'Ongoing',
+        summary: 'Professional networking and contact.',
+        link: 'https://www.linkedin.com/in/samuel-e-08662415b/',
+      },
     ],
     languages: ['English', 'German'],
   },
@@ -246,7 +282,7 @@ const content = {
       education: 'Ausbildung',
       certifications: 'Zertifikate',
       achievements: 'Erfolge',
-      projects: 'Mentoring & Community',
+      projects: 'Projects & Links',
       languages: 'Sprachen',
     },
     atsNote: '',
@@ -438,18 +474,51 @@ const content = {
         period: 'Sep 2021',
         summary: 'Mentoring von Full-Stack-Engineers in Praxisprojekten.',
       },
+      {
+        title: 'n‑krypta (npm‑Paket)',
+        period: '2023',
+        summary: 'Open‑Source‑Kryptographie‑Utilities auf npm veröffentlicht.',
+        link: 'https://www.npmjs.com/package/n-krypta',
+      },
+      {
+        title: 'Best Practices für Entwickler*innen',
+        period: '2021',
+        summary: 'Technischer Artikel auf Dev.to mit bewährten Vorgehensweisen.',
+        link: 'https://dev.to/codepapi/best-practices-for-all-developers-1ak0',
+      },
+      {
+        title: 'Travellers Web App',
+        period: '2020',
+        summary: 'Reisebuchungs‑Anwendung (wakapadi.io).',
+        link: 'https://www.wakapadi.io',
+      },
+      {
+        title: 'Portfolio‑Webseite',
+        period: '2022',
+        summary: 'Diese Portfolio‑Seite selbst, gebaut mit React, Vite und Tailwind.',
+        link: 'https://code-papi.vercel.app',
+      },
+      {
+        title: 'GitHub‑Profil',
+        period: 'Laufend',
+        summary: 'Quellcode und Open‑Source‑Arbeiten.',
+        link: 'https://github.com/CodePapi',
+      },
+      {
+        title: 'LinkedIn‑Profil',
+        period: 'Laufend',
+        summary: 'Professionelles Netzwerk und Kontaktaufnahme.',
+        link: 'https://www.linkedin.com/in/samuel-e-08662415b/',
+      },
     ],
     languages: ['Englisch', 'Deutsch'],
   },
 } as const
 
 const Section = ({ title, children }: { title: string; children: ReactNode }) => (
-  <section className="section">
-    <div className="flex items-center gap-3">
-      <div className="h-2 w-2 rounded-full bg-cyan-400" />
-      <h2 className="text-xl font-semibold text-slate-100 sm:text-2xl">{title}</h2>
-    </div>
-    <div className="mt-5 space-y-4">{children}</div>
+  <section className="section mt-12">
+    <h2 className="text-2xl font-bold text-gray-800 mb-4">{title}</h2>
+    <div className="space-y-6">{children}</div>
   </section>
 )
 
@@ -458,112 +527,92 @@ function App() {
   const data = content[lang]
 
   return (
-    <div className="relative min-h-screen overflow-hidden bg-slate-950 text-slate-100">
-      <div className="pointer-events-none absolute -left-40 top-0 h-96 w-96 rounded-full bg-slate-700/20 blur-[160px]" />
-      <div className="pointer-events-none absolute -right-32 top-40 h-96 w-96 rounded-full bg-indigo-900/20 blur-[160px]" />
-      <div className="pointer-events-none absolute bottom-0 left-1/2 h-[28rem] w-[28rem] -translate-x-1/2 rounded-full bg-slate-800/20 blur-[180px]" />
+    <div className="relative min-h-screen overflow-hidden bg-gray-50 text-gray-900">
+      {/* subtle background blobs for decoration */}
+      <div className="pointer-events-none absolute -left-40 top-0 h-96 w-96 rounded-full bg-indigo-200/40 blur-[160px]" />
+      <div className="pointer-events-none absolute -right-32 top-40 h-96 w-96 rounded-full bg-pink-200/40 blur-[160px]" />
+      <div className="pointer-events-none absolute bottom-0 left-1/2 h-[28rem] w-[28rem] -translate-x-1/2 rounded-full bg-yellow-200/40 blur-[180px]" />
 
       <div className="mx-auto max-w-6xl px-6 pb-16 pt-10 sm:px-8">
-        <header className="glass rounded-3xl p-8 sm:p-10">
-          <div className="flex flex-col gap-6 sm:flex-row sm:items-center sm:justify-between">
-            <div>
-              <p className="text-sm uppercase tracking-[0.2em] text-slate-400">
-                {data.location}
-              </p>
-              <h1 className="mt-3 text-4xl font-semibold text-white sm:text-5xl">
-                <span className="gradient-text">{data.name}</span>
-              </h1>
-              <p className="mt-2 text-lg text-slate-200 sm:text-xl">{data.role}</p>
-              <p className="mt-4 max-w-2xl text-base text-slate-300 sm:text-lg">
-                {data.headline}
-              </p>
-            </div>
-            <div className="flex flex-col gap-3 sm:items-end">
-              <div className="inline-flex rounded-full bg-slate-900/80 p-1">
-                <button
-                  className={`rounded-full px-4 py-2 text-sm font-medium transition ${
-                    lang === 'en'
-                      ? 'bg-slate-100 text-slate-900'
-                      : 'text-slate-300 hover:text-slate-100'
-                  }`}
-                  onClick={() => setLang('en')}
-                  aria-pressed={lang === 'en'}
-                >
-                  English
-                </button>
-                <button
-                  className={`rounded-full px-4 py-2 text-sm font-medium transition ${
-                    lang === 'de'
-                      ? 'bg-slate-100 text-slate-900'
-                      : 'text-slate-300 hover:text-slate-100'
-                  }`}
-                  onClick={() => setLang('de')}
-                  aria-pressed={lang === 'de'}
-                >
-                  Deutsch
-                </button>
-              </div>
-              <div className="flex flex-col gap-2 text-sm text-slate-300">
-                <span>{data.contact.email}</span>
-                <span>{data.contact.phone}</span>
-                <a
-                  href={data.contact.github}
-                  className="text-cyan-300 transition hover:text-cyan-200"
-                  target="_blank"
-                  rel="noreferrer"
-                >
-                  {data.contact.github}
-                </a>
-              </div>
-            </div>
-          </div>
-
-          <div className="mt-8 grid gap-4 sm:grid-cols-[1.4fr_1fr]">
-            <div className="rounded-2xl border border-slate-800/70 bg-slate-900/50 p-6">
-              <h3 className="text-lg font-semibold text-white">{data.sections.summary}</h3>
-              <p className="mt-3 text-sm leading-relaxed text-slate-300 sm:text-base">
-                {data.summary}
-              </p>
-            </div>
-            <div className="flex flex-col gap-3">
+        <header className="bg-white rounded-lg shadow-lg p-10 mb-12">
+          <div className="text-center">
+            <h1 className="text-4xl font-extrabold text-gray-800">{data.name}</h1>
+            <p className="mt-2 text-xl text-gray-600">{data.role} – {data.location}</p>
+            <div className="mt-4 flex flex-wrap justify-center gap-4">
               <a
-                className="rounded-2xl border border-slate-500/40 bg-slate-800/40 px-6 py-4 text-center text-sm font-semibold text-slate-100 transition hover:bg-slate-800/60"
-                href={lang === 'en' ? '/resume-en.pdf' : '/resume-de.pdf'}
-                download
+                href={data.ctas.primary === 'Download Resume (EN)' ? '/resume-en.pdf' : '/resume-de.pdf'}
+                className="inline-block rounded-md bg-indigo-600 px-6 py-3 text-sm font-semibold text-white hover:bg-indigo-700"
+                target="_blank"
+                rel="noopener noreferrer"
               >
                 {data.ctas.primary}
               </a>
               <a
-                className="rounded-2xl border border-slate-700/70 bg-slate-900/60 px-6 py-4 text-center text-sm font-semibold text-slate-100 transition hover:bg-slate-900"
-                href={lang === 'en' ? '/resume-de.pdf' : '/resume-en.pdf'}
-                download
+                href={data.ctas.secondary === 'Download Resume (DE)' ? '/resume-de.pdf' : '/resume-en.pdf'}
+                className="inline-block rounded-md border border-indigo-600 px-6 py-3 text-sm font-semibold text-indigo-600 hover:bg-indigo-50"
+                target="_blank"
+                rel="noopener noreferrer"
               >
                 {data.ctas.secondary}
               </a>
-              <div className="rounded-2xl border border-slate-800/70 bg-slate-900/40 px-6 py-4 text-xs text-slate-400">
-                {data.atsNote}
-              </div>
+            </div>
+            <div className="mt-6 flex flex-wrap justify-center gap-6 text-gray-600">
+              <a href={`mailto:${data.contact.email}`} className="hover:underline">
+                {data.contact.email}
+              </a>
+              <span>{data.contact.phone}</span>
+              <a href={data.contact.github} target="_blank" rel="noopener noreferrer" className="hover:underline">
+                GitHub
+              </a>
             </div>
           </div>
         </header>
+        {/* language selector and summary could go here or below header; simple language widget */}
+        <div className="flex justify-center mt-6">
+          <div className="inline-flex rounded-full bg-gray-200 p-1">
+            <button
+              className={`rounded-full px-4 py-2 text-sm font-medium transition ${
+                lang === 'en' ? 'bg-white text-gray-900' : 'text-gray-600 hover:bg-white'
+              }`}
+              onClick={() => setLang('en')}
+              aria-pressed={lang === 'en'}
+            >
+              English
+            </button>
+            <button
+              className={`rounded-full px-4 py-2 text-sm font-medium transition ${
+                lang === 'de' ? 'bg-white text-gray-900' : 'text-gray-600 hover:bg-white'
+              }`}
+              onClick={() => setLang('de')}
+              aria-pressed={lang === 'de'}
+            >
+              Deutsch
+            </button>
+          </div>
+        </div>
+        <Section title={data.sections.summary}>
+          <p className="text-gray-700 leading-relaxed">{data.summary}</p>
+        </Section>
+
+        <div className="mt-12" />
 
         <main className="mt-12 space-y-12">
           <Section title={data.sections.experience}>
             <div className="grid gap-5">
               {data.experience.map((role) => (
-                <article key={`${role.company}-${role.period}`} className="glass rounded-2xl p-6">
+                <article key={`${role.company}-${role.period}`} className="bg-white shadow rounded-lg p-6">
                   <div className="flex flex-wrap items-center justify-between gap-2">
                     <div>
-                      <h3 className="text-lg font-semibold text-white">{role.title}</h3>
-                      <p className="text-sm text-slate-300">
+                      <h3 className="text-lg font-semibold text-gray-800">{role.title}</h3>
+                      <p className="text-sm text-gray-600">
                         {role.company} • {role.location}
                       </p>
                     </div>
-                    <span className="text-xs font-medium uppercase tracking-[0.2em] text-slate-400">
+                    <span className="text-xs font-medium uppercase tracking-[0.2em] text-gray-500">
                       {role.period}
                     </span>
                   </div>
-                  <ul className="mt-4 list-disc space-y-2 pl-5 text-sm text-slate-300 sm:text-base">
+                  <ul className="mt-4 list-disc space-y-2 pl-5 text-sm text-gray-700 sm:text-base">
                     {role.bullets.map((bullet) => (
                       <li key={bullet}>{bullet}</li>
                     ))}
@@ -577,13 +626,13 @@ function App() {
             <div className="grid gap-5 md:grid-cols-2">
               {(Object.entries(data.skills) as [string, string[]][]).map(
                 ([group, items]) => (
-                <div key={group} className="glass rounded-2xl p-6">
-                  <h3 className="text-base font-semibold text-white">{group}</h3>
+                <div key={group} className="bg-white shadow rounded-lg p-6">
+                  <h3 className="text-base font-semibold text-gray-800">{group}</h3>
                   <div className="mt-3 flex flex-wrap gap-2">
                     {items.map((skill) => (
                       <span
                         key={skill}
-                        className="rounded-full border border-slate-700/70 bg-slate-900/60 px-3 py-1 text-xs text-slate-200"
+                        className="rounded-full border border-gray-300 bg-gray-100 px-3 py-1 text-xs text-gray-800"
                       >
                         {skill}
                       </span>
@@ -597,9 +646,9 @@ function App() {
           <div className="grid gap-8 lg:grid-cols-2">
             <Section title={data.sections.education}>
               {data.education.map((item) => (
-                <div key={item.degree} className="glass rounded-2xl p-6">
-                  <h3 className="text-base font-semibold text-white">{item.degree}</h3>
-                  <p className="text-sm text-slate-300">
+                <div key={item.degree} className="bg-white shadow rounded-lg p-6">
+                  <h3 className="text-base font-semibold text-gray-800">{item.degree}</h3>
+                  <p className="text-sm text-gray-600">
                     {item.school} • {item.period}
                   </p>
                 </div>
@@ -607,8 +656,8 @@ function App() {
             </Section>
 
             <Section title={data.sections.certifications}>
-              <div className="glass rounded-2xl p-6">
-                <ul className="list-disc space-y-2 pl-5 text-sm text-slate-300 sm:text-base">
+              <div className="bg-white shadow rounded-lg p-6">
+                <ul className="list-disc space-y-2 pl-5 text-sm text-gray-700 sm:text-base">
                   {data.certifications.map((cert) => (
                     <li key={cert}>{cert}</li>
                   ))}
@@ -621,14 +670,26 @@ function App() {
             <Section title={data.sections.projects}>
               <div className="grid gap-4">
                 {data.projects.map((project) => (
-                  <div key={project.title} className="glass rounded-2xl p-6">
-                    <h3 className="text-base font-semibold text-white">
-                      {project.title}
-                    </h3>
-                    <p className="text-xs uppercase tracking-[0.2em] text-slate-400">
+                  <div key={project.title} className="bg-white shadow rounded-lg p-6">
+                    <div className="flex items-center justify-between">
+                      <h3 className="text-base font-semibold text-gray-800">
+                        {project.title}
+                      </h3>
+                      {((project as any).link) && (
+                        <a
+                          href={(project as any).link}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="text-indigo-600 hover:underline text-sm"
+                        >
+                          visit ↗
+                        </a>
+                      )}
+                    </div>
+                    <p className="text-xs uppercase tracking-[0.2em] text-gray-500">
                       {project.period}
                     </p>
-                    <p className="mt-2 text-sm text-slate-300 sm:text-base">
+                    <p className="mt-2 text-sm text-gray-700 sm:text-base">
                       {project.summary}
                     </p>
                   </div>
@@ -637,8 +698,8 @@ function App() {
             </Section>
 
             <Section title={data.sections.achievements}>
-              <div className="glass rounded-2xl p-6">
-                <ul className="list-disc space-y-2 pl-5 text-sm text-slate-300 sm:text-base">
+              <div className="bg-white shadow rounded-lg p-6">
+                <ul className="list-disc space-y-2 pl-5 text-sm text-gray-700 sm:text-base">
                   {data.achievements.map((achievement) => (
                     <li key={achievement}>{achievement}</li>
                   ))}
@@ -648,12 +709,12 @@ function App() {
           </div>
 
           <Section title={data.sections.languages}>
-            <div className="glass rounded-2xl p-6">
+            <div className="bg-white shadow rounded-lg p-6">
               <div className="flex flex-wrap gap-2">
                 {data.languages.map((language) => (
                   <span
                     key={language}
-                    className="rounded-full border border-slate-700/70 bg-slate-900/60 px-4 py-2 text-xs text-slate-200"
+                    className="rounded-full border border-gray-300 bg-gray-100 px-4 py-2 text-xs text-gray-800"
                   >
                     {language}
                   </span>
