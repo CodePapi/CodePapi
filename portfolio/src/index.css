@@ -13,14 +13,18 @@
   box-sizing: border-box;
 }
 
+html {
+  scroll-behavior: smooth;
+}
+
 body {
   margin: 0;
   min-width: 320px;
   min-height: 100vh;
   font-family: "Sora", "SF Pro Text", system-ui, -apple-system, BlinkMacSystemFont,
     "Segoe UI", sans-serif;
-  background: #f9fafb;
-  color: #111827;
+  background: linear-gradient(180deg, #f8fafc 0%, #f1f5f9 55%, #f8fafc 100%);
+  color: #0f172a;
 }
 
 a {

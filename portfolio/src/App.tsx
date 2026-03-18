@@ -515,219 +515,387 @@ const content = {
   },
 } as const
 
-const Section = ({ title, children }: { title: string; children: ReactNode }) => (
-  <section className="section mt-12">
-    <h2 className="text-2xl font-bold text-gray-800 mb-4">{title}</h2>
+const Section = ({
+  id,
+  title,
+  subtitle,
+  children,
+}: {
+  id: string
+  title: string
+  subtitle?: string
+  children: ReactNode
+}) => (
+  <section id={id} className="section scroll-mt-28 mt-16">
+    <div className="mb-8">
+      <h2 className="text-3xl font-semibold text-slate-900 sm:text-4xl">{title}</h2>
+      {subtitle ? (
+        <p className="mt-3 max-w-2xl text-sm leading-relaxed text-slate-600">{subtitle}</p>
+      ) : null}
+    </div>
     <div className="space-y-6">{children}</div>
   </section>
 )
 
 function App() {
   const [lang, setLang] = useState<Language>('en')
+  const [mobileNavOpen, setMobileNavOpen] = useState(false)
   const data = content[lang]
 
-  return (
-    <div className="relative min-h-screen overflow-hidden bg-gray-50 text-gray-900">
-      {/* subtle background blobs for decoration */}
-      <div className="pointer-events-none absolute -left-40 top-0 h-96 w-96 rounded-full bg-indigo-200/40 blur-[160px]" />
-      <div className="pointer-events-none absolute -right-32 top-40 h-96 w-96 rounded-full bg-pink-200/40 blur-[160px]" />
-      <div className="pointer-events-none absolute bottom-0 left-1/2 h-[28rem] w-[28rem] -translate-x-1/2 rounded-full bg-yellow-200/40 blur-[180px]" />
+  const resumeUrl = lang === 'en' ? '/resume-en.pdf' : '/resume-de.pdf'
+  const altResumeUrl = lang === 'en' ? '/resume-de.pdf' : '/resume-en.pdf'
 
-      <div className="mx-auto max-w-6xl px-6 pb-16 pt-10 sm:px-8">
-        <header className="bg-white rounded-lg shadow-lg p-10 mb-12">
-          <div className="text-center">
-            <h1 className="text-4xl font-extrabold text-gray-800">{data.name}</h1>
-            <p className="mt-2 text-xl text-gray-600">{data.role} – {data.location}</p>
-            <div className="mt-4 flex flex-wrap justify-center gap-4">
-              <a
-                href={data.ctas.primary === 'Download Resume (EN)' ? '/resume-en.pdf' : '/resume-de.pdf'}
-                className="inline-block rounded-md bg-indigo-600 px-6 py-3 text-sm font-semibold text-white hover:bg-indigo-700"
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                {data.ctas.primary}
-              </a>
-              <a
-                href={data.ctas.secondary === 'Download Resume (DE)' ? '/resume-de.pdf' : '/resume-en.pdf'}
-                className="inline-block rounded-md border border-indigo-600 px-6 py-3 text-sm font-semibold text-indigo-600 hover:bg-indigo-50"
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                {data.ctas.secondary}
-              </a>
-            </div>
-            <div className="mt-6 flex flex-wrap justify-center gap-6 text-gray-600">
-              <a href={`mailto:${data.contact.email}`} className="hover:underline">
-                {data.contact.email}
-              </a>
-              <span>{data.contact.phone}</span>
-              <a href={data.contact.github} target="_blank" rel="noopener noreferrer" className="hover:underline">
-                GitHub
-              </a>
+  const navSections = [
+    { id: 'summary', label: data.sections.summary },
+    { id: 'experience', label: data.sections.experience },
+    { id: 'skills', label: data.sections.skills },
+    { id: 'projects', label: data.sections.projects },
+    { id: 'achievements', label: data.sections.achievements },
+    { id: 'education', label: data.sections.education },
+    { id: 'certifications', label: data.sections.certifications },
+    { id: 'languages', label: data.sections.languages },
+  ]
+
+  const scrollToSection = (id: string) => {
+    const element = document.getElementById(id)
+    if (!element) return
+    element.scrollIntoView({ behavior: 'smooth', block: 'start' })
+    setMobileNavOpen(false)
+  }
+
+  return (
+    <div className="min-h-screen bg-gradient-to-b from-slate-50 via-white to-slate-100 text-slate-900">
+      <header className="fixed inset-x-0 top-0 z-50 border-b border-slate-200 bg-white/90 backdrop-blur shadow-sm">
+        <div className="mx-auto flex max-w-6xl items-center justify-between gap-4 px-6 py-3">
+          <div className="flex items-center gap-3">
+            <div className="flex h-10 w-10 items-center justify-center rounded-2xl bg-slate-900 text-white shadow-sm">
+              <span className="text-base font-semibold">SE</span>
             </div>
           </div>
-        </header>
-        {/* language selector and summary could go here or below header; simple language widget */}
-        <div className="flex justify-center mt-6">
-          <div className="inline-flex rounded-full bg-gray-200 p-1">
+
+          <nav className="hidden items-center gap-2 text-sm font-medium text-slate-600 md:flex">
+            {navSections.map((section) => (
+              <button
+                key={section.id}
+                type="button"
+                onClick={() => scrollToSection(section.id)}
+                className="rounded-full px-3 py-2 transition hover:bg-slate-100 focus:outline-none focus-visible:ring focus-visible:ring-indigo-500/40"
+              >
+                {section.label}
+              </button>
+            ))}
+          </nav>
+
+          <div className="flex items-center gap-2">
+            <div className="hidden items-center gap-1 rounded-full bg-slate-100 p-1 md:flex">
+              <button
+                type="button"
+                onClick={() => setLang('en')}
+                className={`rounded-full px-3 py-2 text-xs font-semibold transition ${
+                  lang === 'en' ? 'bg-white text-slate-900 shadow-sm' : 'text-slate-600 hover:bg-white'
+                }`}
+              >
+                EN
+              </button>
+              <button
+                type="button"
+                onClick={() => setLang('de')}
+                className={`rounded-full px-3 py-2 text-xs font-semibold transition ${
+                  lang === 'de' ? 'bg-white text-slate-900 shadow-sm' : 'text-slate-600 hover:bg-white'
+                }`}
+              >
+                DE
+              </button>
+            </div>
+
             <button
-              className={`rounded-full px-4 py-2 text-sm font-medium transition ${
-                lang === 'en' ? 'bg-white text-gray-900' : 'text-gray-600 hover:bg-white'
-              }`}
-              onClick={() => setLang('en')}
-              aria-pressed={lang === 'en'}
+              type="button"
+              onClick={() => setMobileNavOpen((open) => !open)}
+              className="inline-flex h-10 w-10 items-center justify-center rounded-full border border-slate-200 bg-white text-slate-600 shadow-sm transition hover:bg-slate-50 md:hidden"
+              aria-label="Toggle navigation"
             >
-              English
-            </button>
-            <button
-              className={`rounded-full px-4 py-2 text-sm font-medium transition ${
-                lang === 'de' ? 'bg-white text-gray-900' : 'text-gray-600 hover:bg-white'
-              }`}
-              onClick={() => setLang('de')}
-              aria-pressed={lang === 'de'}
-            >
-              Deutsch
+              <svg className="h-5 w-5" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                <path
+                  d="M4 7h16M4 12h16M4 17h16"
+                  stroke="currentColor"
+                  strokeWidth="2"
+                  strokeLinecap="round"
+                />
+              </svg>
             </button>
           </div>
         </div>
-        <Section title={data.sections.summary}>
-          <p className="text-gray-700 leading-relaxed">{data.summary}</p>
-        </Section>
+      </header>
 
-        <div className="mt-12" />
-
-        <main className="mt-12 space-y-12">
-          <Section title={data.sections.experience}>
-            <div className="grid gap-5">
-              {data.experience.map((role) => (
-                <article key={`${role.company}-${role.period}`} className="bg-white shadow rounded-lg p-6">
-                  <div className="flex flex-wrap items-center justify-between gap-2">
-                    <div>
-                      <h3 className="text-lg font-semibold text-gray-800">{role.title}</h3>
-                      <p className="text-sm text-gray-600">
-                        {role.company} • {role.location}
-                      </p>
-                    </div>
-                    <span className="text-xs font-medium uppercase tracking-[0.2em] text-gray-500">
-                      {role.period}
-                    </span>
+        {mobileNavOpen ? (
+          <div className="fixed inset-x-0 top-14 z-40 md:hidden">
+            <div className="mx-auto max-w-6xl overflow-y-auto rounded-b-3xl border-t border-slate-200/70 bg-white/95 backdrop-blur shadow-xl">
+              <div className="flex flex-col gap-4 px-6 py-5">
+                <div className="flex items-center justify-between">
+                  <div className="flex gap-2">
+                    <button
+                      type="button"
+                      onClick={() => setLang('en')}
+                      className={`rounded-full px-4 py-2 text-xs font-semibold transition ${
+                        lang === 'en' ? 'bg-slate-100 text-slate-900' : 'text-slate-600 hover:bg-slate-50'
+                      }`}
+                    >
+                      EN
+                    </button>
+                    <button
+                      type="button"
+                      onClick={() => setLang('de')}
+                      className={`rounded-full px-4 py-2 text-xs font-semibold transition ${
+                        lang === 'de' ? 'bg-slate-100 text-slate-900' : 'text-slate-600 hover:bg-slate-50'
+                      }`}
+                    >
+                      DE
+                    </button>
                   </div>
-                  <ul className="mt-4 list-disc space-y-2 pl-5 text-sm text-gray-700 sm:text-base">
-                    {role.bullets.map((bullet) => (
-                      <li key={bullet}>{bullet}</li>
-                    ))}
-                  </ul>
-                </article>
-              ))}
-            </div>
-          </Section>
 
-          <Section title={data.sections.skills}>
-            <div className="grid gap-5 md:grid-cols-2">
-              {(Object.entries(data.skills) as [string, string[]][]).map(
-                ([group, items]) => (
-                <div key={group} className="bg-white shadow rounded-lg p-6">
-                  <h3 className="text-base font-semibold text-gray-800">{group}</h3>
-                  <div className="mt-3 flex flex-wrap gap-2">
-                    {items.map((skill) => (
-                      <span
-                        key={skill}
-                        className="rounded-full border border-gray-300 bg-gray-100 px-3 py-1 text-xs text-gray-800"
+                  <button
+                    type="button"
+                    onClick={() => setMobileNavOpen(false)}
+                    className="rounded-full p-2 text-slate-600 hover:bg-slate-100"
+                    aria-label="Close menu"
+                  >
+                    ✕
+                  </button>
+                </div>
+
+                <nav className="flex flex-col gap-2">
+                  {navSections.map((section) => (
+                    <button
+                      key={section.id}
+                      type="button"
+                      onClick={() => scrollToSection(section.id)}
+                      className="w-full rounded-xl px-4 py-3 text-left text-sm font-medium text-slate-700 transition hover:bg-slate-100"
+                    >
+                      {section.label}
+                    </button>
+                  ))}
+                </nav>
+              </div>
+            </div>
+          </div>
+        ) : null}
+
+      <main className="mx-auto max-w-6xl px-6 pt-28">
+        <div className="rounded-3xl bg-white/80 p-8 shadow-sm ring-1 ring-slate-200">
+          <h1 className="text-3xl font-semibold text-slate-900 sm:text-4xl">{data.name}</h1>
+          <p className="mt-2 text-base text-slate-600">{data.role}</p>
+          <p className="mt-4 text-sm text-slate-700 max-w-2xl">{data.headline}</p>
+        </div>
+
+        <Section
+          id="summary"
+          title={data.sections.summary}
+          subtitle={data.headline}
+        >
+          <div className="grid gap-10 lg:grid-cols-12 lg:items-start">
+            <div className="lg:col-span-7">
+              <p className="text-base leading-relaxed text-slate-700">{data.summary}</p>
+              <div className="mt-8 flex flex-wrap gap-3">
+                <a
+                  href={resumeUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center justify-center rounded-full bg-indigo-600 px-5 py-3 text-sm font-semibold text-white shadow-sm transition hover:bg-indigo-700"
+                >
+                  {data.ctas.primary}
+                </a>
+                <a
+                  href={altResumeUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center justify-center rounded-full border border-slate-200 bg-white px-5 py-3 text-sm font-semibold text-slate-700 transition hover:bg-slate-50"
+                >
+                  {data.ctas.secondary}
+                </a>
+              </div>
+            </div>
+
+            <aside className="lg:col-span-5">
+              <div className="rounded-3xl bg-white/80 p-6 shadow-xl ring-1 ring-slate-200 backdrop-blur">
+                <h3 className="text-sm font-semibold text-slate-900">Get in touch</h3>
+                <p className="mt-2 text-sm text-slate-600">I typically reply within 24 hrs. Feel free to reach out.</p>
+
+                <div className="mt-6 space-y-4">
+                  <div className="flex items-start gap-3">
+                    <span className="mt-1 inline-flex h-9 w-9 items-center justify-center rounded-2xl bg-indigo-50 text-indigo-600">📧</span>
+                    <div>
+                      <p className="text-xs font-semibold text-slate-900">Email</p>
+                      <a
+                        href={`mailto:${data.contact.email}`}
+                        className="text-sm font-medium text-indigo-600 hover:underline"
                       >
-                        {skill}
-                      </span>
-                    ))}
+                        {data.contact.email}
+                      </a>
+                    </div>
+                  </div>
+
+                  <div className="flex items-start gap-3">
+                    <span className="mt-1 inline-flex h-9 w-9 items-center justify-center rounded-2xl bg-indigo-50 text-indigo-600">📞</span>
+                    <div>
+                      <p className="text-xs font-semibold text-slate-900">Phone</p>
+                      <p className="text-sm font-medium text-slate-700">{data.contact.phone}</p>
+                    </div>
+                  </div>
+
+                  <div className="flex items-start gap-3">
+                    <span className="mt-1 inline-flex h-9 w-9 items-center justify-center rounded-2xl bg-indigo-50 text-indigo-600">💻</span>
+                    <div>
+                      <p className="text-xs font-semibold text-slate-900">GitHub</p>
+                      <a
+                        href={data.contact.github}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="text-sm font-medium text-indigo-600 hover:underline"
+                      >
+                        {data.contact.github.replace('https://', '')}
+                      </a>
+                    </div>
                   </div>
                 </div>
-              ))}
-            </div>
-          </Section>
+              </div>
+            </aside>
+          </div>
+        </Section>
 
-          <div className="grid gap-8 lg:grid-cols-2">
-            <Section title={data.sections.education}>
+        <Section id="experience" title={data.sections.experience}>
+          <div className="grid gap-6">
+            {data.experience.map((role) => (
+              <article
+                key={`${role.company}-${role.period}`}
+                className="group overflow-hidden rounded-3xl border border-slate-200 bg-white p-6 shadow-sm transition hover:-translate-y-1 hover:shadow-lg"
+              >
+                <div className="flex flex-wrap items-start justify-between gap-4">
+                  <div>
+                    <h3 className="text-lg font-semibold text-slate-900">{role.title}</h3>
+                    <p className="mt-1 text-sm text-slate-600">
+                      {role.company} • {role.location}
+                    </p>
+                  </div>
+                  <span className="rounded-full bg-indigo-50 px-3 py-1 text-xs font-semibold uppercase tracking-wide text-indigo-700">
+                    {role.period}
+                  </span>
+                </div>
+                <ul className="mt-5 list-disc space-y-2 pl-5 text-sm text-slate-700">
+                  {role.bullets.map((bullet) => (
+                    <li key={bullet}>{bullet}</li>
+                  ))}
+                </ul>
+              </article>
+            ))}
+          </div>
+        </Section>
+
+        <Section id="skills" title={data.sections.skills}>
+          <div className="grid gap-6 md:grid-cols-2">
+            {(Object.entries(data.skills) as [string, string[]][]).map(([group, items]) => (
+              <div key={group} className="overflow-hidden rounded-3xl bg-white p-6 shadow-sm ring-1 ring-slate-200">
+                <h3 className="text-base font-semibold text-slate-900">{group}</h3>
+                <div className="mt-4 flex flex-wrap gap-2">
+                  {items.map((skill) => (
+                    <span
+                      key={skill}
+                      className="rounded-full bg-slate-100 px-3 py-1 text-xs font-medium text-slate-700"
+                    >
+                      {skill}
+                    </span>
+                  ))}
+                </div>
+              </div>
+            ))}
+          </div>
+        </Section>
+
+        <div className="grid gap-8 lg:grid-cols-2">
+          <Section id="education" title={data.sections.education}>
+            <div className="space-y-6">
               {data.education.map((item) => (
-                <div key={item.degree} className="bg-white shadow rounded-lg p-6">
-                  <h3 className="text-base font-semibold text-gray-800">{item.degree}</h3>
-                  <p className="text-sm text-gray-600">
+                <div
+                  key={item.degree}
+                  className="overflow-hidden rounded-3xl bg-white p-6 shadow-sm ring-1 ring-slate-200"
+                >
+                  <h3 className="text-base font-semibold text-slate-900">{item.degree}</h3>
+                  <p className="mt-1 text-sm text-slate-600">
                     {item.school} • {item.period}
                   </p>
                 </div>
               ))}
-            </Section>
-
-            <Section title={data.sections.certifications}>
-              <div className="bg-white shadow rounded-lg p-6">
-                <ul className="list-disc space-y-2 pl-5 text-sm text-gray-700 sm:text-base">
-                  {data.certifications.map((cert) => (
-                    <li key={cert}>{cert}</li>
-                  ))}
-                </ul>
-              </div>
-            </Section>
-          </div>
-
-          <div className="grid gap-8 lg:grid-cols-2">
-            <Section title={data.sections.projects}>
-              <div className="grid gap-4">
-                {data.projects.map((project) => (
-                  <div key={project.title} className="bg-white shadow rounded-lg p-6">
-                    <div className="flex items-center justify-between">
-                      <h3 className="text-base font-semibold text-gray-800">
-                        {project.title}
-                      </h3>
-                      {((project as any).link) && (
-                        <a
-                          href={(project as any).link}
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          className="text-indigo-600 hover:underline text-sm"
-                        >
-                          visit ↗
-                        </a>
-                      )}
-                    </div>
-                    <p className="text-xs uppercase tracking-[0.2em] text-gray-500">
-                      {project.period}
-                    </p>
-                    <p className="mt-2 text-sm text-gray-700 sm:text-base">
-                      {project.summary}
-                    </p>
-                  </div>
-                ))}
-              </div>
-            </Section>
-
-            <Section title={data.sections.achievements}>
-              <div className="bg-white shadow rounded-lg p-6">
-                <ul className="list-disc space-y-2 pl-5 text-sm text-gray-700 sm:text-base">
-                  {data.achievements.map((achievement) => (
-                    <li key={achievement}>{achievement}</li>
-                  ))}
-                </ul>
-              </div>
-            </Section>
-          </div>
-
-          <Section title={data.sections.languages}>
-            <div className="bg-white shadow rounded-lg p-6">
-              <div className="flex flex-wrap gap-2">
-                {data.languages.map((language) => (
-                  <span
-                    key={language}
-                    className="rounded-full border border-gray-300 bg-gray-100 px-4 py-2 text-xs text-gray-800"
-                  >
-                    {language}
-                  </span>
-                ))}
-              </div>
             </div>
           </Section>
-        </main>
 
-        <footer className="mt-16 text-center text-xs text-slate-500">
+          <Section id="certifications" title={data.sections.certifications}>
+            <div className="overflow-hidden rounded-3xl bg-white p-6 shadow-sm ring-1 ring-slate-200">
+              <ul className="list-disc space-y-2 pl-5 text-sm text-slate-700">
+                {data.certifications.map((cert) => (
+                  <li key={cert}>{cert}</li>
+                ))}
+              </ul>
+            </div>
+          </Section>
+        </div>
+
+        <div className="grid gap-8 lg:grid-cols-2">
+          <Section id="projects" title={data.sections.projects}>
+            <div className="grid gap-4">
+              {data.projects.map((project) => (
+                <div
+                  key={project.title}
+                  className="overflow-hidden rounded-3xl bg-white p-6 shadow-sm ring-1 ring-slate-200 transition hover:-translate-y-1 hover:shadow-lg"
+                >
+                  <div className="flex items-center justify-between gap-4">
+                    <h3 className="text-base font-semibold text-slate-900">{project.title}</h3>
+                    {((project as any).link) && (
+                      <a
+                        href={(project as any).link}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="text-sm font-semibold text-indigo-600 hover:text-indigo-700"
+                      >
+                        visit ↗
+                      </a>
+                    )}
+                  </div>
+                  <p className="mt-2 text-xs uppercase tracking-wide text-slate-500">{project.period}</p>
+                  <p className="mt-3 text-sm text-slate-700">{project.summary}</p>
+                </div>
+              ))}
+            </div>
+          </Section>
+
+          <Section id="achievements" title={data.sections.achievements}>
+            <div className="overflow-hidden rounded-3xl bg-white p-6 shadow-sm ring-1 ring-slate-200">
+              <ul className="list-disc space-y-2 pl-5 text-sm text-slate-700">
+                {data.achievements.map((achievement) => (
+                  <li key={achievement}>{achievement}</li>
+                ))}
+              </ul>
+            </div>
+          </Section>
+        </div>
+
+        <Section id="languages" title={data.sections.languages}>
+          <div className="overflow-hidden rounded-3xl bg-white p-6 shadow-sm ring-1 ring-slate-200">
+            <div className="flex flex-wrap gap-3">
+              {data.languages.map((language) => (
+                <span
+                  key={language}
+                  className="rounded-full bg-slate-100 px-4 py-2 text-xs font-semibold text-slate-700"
+                >
+                  {language}
+                </span>
+              ))}
+            </div>
+          </div>
+        </Section>
+
+        <footer className="mt-20 border-t border-slate-200/70 pt-10 text-center text-xs text-slate-500">
           © {new Date().getFullYear()} {data.name}. All rights reserved.
         </footer>
-      </div>
+      </main>
     </div>
   )
 }
