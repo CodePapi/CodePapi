@@ -132,6 +132,5 @@ Built reliable backend services using NestJS, PostgreSQL, and cloud infrastructu
 ## 🤝 Let's Connect
 
 * 📧 Email: [oshiesam@gmail.com](mailto:oshiesam@gmail.com)
-* 🌐 Portfolio: [https://code-papi.vercel.app/](https://code-papi.vercel.app/)
 
 ---
